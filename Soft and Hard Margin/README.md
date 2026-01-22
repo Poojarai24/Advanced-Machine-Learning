@@ -1,183 +1,182 @@
-📐 Support Vector Machine (SVM): Margin & Regularization (C)
-📌 Project Overview
+# Support Vector Machine (SVM) - Margin and Regularization
 
-This repository is an educational implementation of Support Vector Machines (SVMs) focused on understanding:
+## Overview
+This repository demonstrates the working principles of Support Vector Machines (SVM) using modular Python scripts.
+The main focus is on understanding margins, support vectors, and the effect of the regularization parameter C.
 
-Maximum margin principle
+The project avoids Jupyter notebooks and uses clean .py files for better modularity and learning clarity.
 
-Support vectors
+---
 
-Hard margin vs soft margin SVM
+## Learning Objectives
+After completing this project, you will understand:
 
-Effect of the regularization parameter C
+- What a margin is in Support Vector Machines
+- Why support vectors are important
+- Difference between hard margin and soft margin SVM
+- Behavior of SVM on linearly separable and overlapping data
+- Effect of the regularization parameter C
 
-Behavior of SVM on linearly separable and overlapping datasets
+---
 
-The project is implemented using modular Python scripts instead of a single notebook, making the learning flow clear and structured.
+## Project Structure
 
-🎯 Learning Goals
-
-This project helps a learner to:
-
-Visually understand SVM decision boundaries
-
-See how margins are formed
-
-Observe how support vectors change
-
-Understand the bias–variance trade-off controlled by parameter C
-
-Compare SVM behavior across multiple experiments
-
-🗂️ Project Structure
+```
 .
-├── data.py        # Dataset generation
-├── visual.py      # Plotting & visualization
+├── data.py
+├── visual.py
 │
-├── task0.py       # Hard Margin SVM (Linearly Separable Data)
-├── task1.py       # Hard Margin SVM (Overlapping Data)
-├── task2.py       # Soft Margin SVM (C = 1.0)
-├── task3.py       # Effect of Different C Values
+├── task0.py
+├── task1.py
+├── task2.py
+├── task3.py
 │
 └── README.md
+```
 
-📁 File Descriptions
-🔹 data.py
+---
 
-Responsible for generating datasets used across all experiments.
+## File Description
 
-Linearly separable data
+### data.py
+This file handles dataset generation used across all tasks.
 
-Overlapping (non-linearly separable) data
+Functions included:
+- generate_linear_separable_data()
+- generate_overlapping_data()
 
-This ensures data generation is isolated from model logic.
+---
 
-🔹 visual.py
+### visual.py
+This file contains all visualization logic.
 
-Contains all visualization logic, including:
+It is responsible for plotting:
+- Data points
+- Decision boundary
+- Margin lines (+1 and -1)
+- Support vectors
+- Margin shaded region
 
-Scatter plots of data
+---
 
-SVM decision boundary
+### task0.py - Hard Margin SVM (Linearly Separable Data)
+This script demonstrates hard margin SVM on perfectly linearly separable data.
 
-Margin lines (+1 and −1)
+What this task shows:
+- Maximum margin separation
+- Very few support vectors
+- No misclassification
 
-Highlighting support vectors
+Run using:
+```
+python task0.py
+```
 
-Shaded margin region
+---
 
-Keeping visualization separate improves readability and reuse.
+### task1.py - Hard Margin SVM (Overlapping Data)
+This script applies hard margin SVM to overlapping data.
 
-🧪 Experiments (Task Files)
+What this task shows:
+- Increase in number of support vectors
+- Sensitivity to overlapping data
+- Poor generalization
 
-Each task file represents one focused experiment.
+Run using:
+```
+python task1.py
+```
 
-🧩 task0.py — Hard Margin SVM (Linearly Separable Data)
+---
 
-Uses perfectly separable data
+### task2.py - Soft Margin SVM (C = 1.0)
+This script introduces soft margin SVM with a moderate value of C.
 
-Trains SVM with a very large C (C = 1e6)
+What this task shows:
+- Allows some misclassification
+- Produces a balanced margin
+- Handles overlapping data better than hard margin
 
-Demonstrates:
+Run using:
+```
+python task2.py
+```
 
-Maximum margin classifier
+---
 
-Minimal number of support vectors
+### task3.py - Effect of Multiple C Values
+This script demonstrates the effect of different values of C on SVM behavior.
 
-Clean decision boundary
+C values used:
+- 0.01
+- 0.1
+- 1.0
+- 10.0
+- 100.0
 
-📌 Key takeaway:
-Hard Margin SVM works well only when data is perfectly separable.
+Observations:
+- Smaller C gives wider margin and more support vectors
+- Larger C gives narrower margin and fewer misclassifications
+- Very large C behaves similar to hard margin SVM
 
-🧩 task1.py — Hard Margin SVM (Overlapping Data)
+Run using:
+```
+python task3.py
+```
 
-Uses overlapping data
+---
 
-Applies hard margin SVM on non-separable data
+## Understanding the Parameter C
 
-Shows:
+C is the regularization parameter in SVM.
 
-Increase in number of support vectors
+- Small C:
+  - Wider margin
+  - More tolerance to misclassification
 
-Sensitivity to noise
+- Large C:
+  - Narrower margin
+  - Less tolerance to misclassification
 
-Poor generalization
+In simple terms:
+- Small C focuses on margin maximization
+- Large C focuses on classification accuracy
 
-📌 Key takeaway:
-Hard margin SVM is not suitable for noisy or overlapping data.
+---
 
-🧩 task2.py — Soft Margin SVM (Fixed C = 1.0)
+## How to Run the Project
 
-Uses overlapping data
-
-Trains soft margin SVM (C = 1.0)
-
-Allows margin violations
-
-Produces better generalization
-
-📌 Key takeaway:
-Soft margin SVM balances margin size and classification error.
-
-🧩 task3.py — Effect of Regularization Parameter C
-
-Trains SVM with multiple C values:
-
-C = [0.01, 0.1, 1.0, 10.0, 100.0]
-
-
-Visualizes how decision boundary and margin change
-
-Prints number of support vectors for each C
-
-📌 Key observations:
-
-C Value	Margin	Misclassification	Support Vectors
-Small C	Wide	High	More
-Large C	Narrow	Low	Fewer
-🔍 Understanding the Parameter C
-
-C controls the trade-off between margin width and classification accuracy.
-
-Small C → Larger margin, allows misclassification (high bias)
-
-Large C → Smaller margin, strict classification (low bias)
-
-Very large C → Approaches hard margin behavior
-
-▶️ How to Run
-Install Dependencies
+Install dependencies:
+```
 pip install numpy matplotlib scikit-learn
+```
 
-Run Experiments
-python task0.py   # Hard margin on separable data
-python task1.py   # Hard margin on overlapping data
-python task2.py   # Soft margin (C = 1.0)
-python task3.py   # Multiple C value comparison
+Run any task:
+```
+python task0.py
+python task1.py
+python task2.py
+python task3.py
+```
 
-🛠️ Technologies Used
+---
 
-Python
+## Technologies Used
+- Python
+- NumPy
+- Matplotlib
+- Scikit-learn
 
-NumPy
+---
 
-Matplotlib
+## Educational Purpose
+This project is intended for:
+- Machine learning beginners
+- Academic assignments
+- Conceptual understanding of SVM
+- Interview and viva preparation
 
-Scikit-learn
+---
 
-🎓 Intended Audience
-
-This project is suitable for:
-
-Machine Learning beginners
-
-Academic assignments
-
-Conceptual demonstrations
-
-Interview and viva preparation
-
-✅ Summary
-
-This project demonstrates how SVM margins and regularization affect model behavior.
-By breaking the learning into multiple focused tasks, it provides a clear, step-by-step understanding of SVM concepts through visualization.
+## Conclusion
+This project provides a clear and visual understanding of how SVM margins work and how the parameter C controls the trade-off between margin width and classification accuracy.
