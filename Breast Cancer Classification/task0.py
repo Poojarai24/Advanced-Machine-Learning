@@ -10,7 +10,7 @@ from visual import plot_decision_boundary
 # Load data
 X_train_scaled, X_test_scaled, X_train_pca, X_test_pca, y_train, y_test = load_data()
 
-# 1️⃣ Linear Logistic Regression
+# Linear Logistic Regression
 linear_model = LogisticRegression()
 linear_model.fit(X_train_pca, y_train)
 
@@ -27,7 +27,7 @@ plot_decision_boundary(
     acc_linear
 )
 
-# 2️⃣ Polynomial Degree = 2
+# Polynomial Degree = 2
 poly_model = Pipeline([
     ("poly", PolynomialFeatures(degree=2)),
     ("clf", LogisticRegression(max_iter=1000))
@@ -48,7 +48,7 @@ plot_decision_boundary(
     acc_poly
 )
 
-# 3️⃣ SVM with RBF Kernel
+# SVM with RBF Kernel
 rbf_model = SVC(kernel="rbf", gamma="scale")
 rbf_model.fit(X_train_pca, y_train)
 

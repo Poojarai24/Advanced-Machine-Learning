@@ -9,16 +9,13 @@ from sklearn.decomposition import PCA
 
 from data import load_data, generate_large_dataset
 
-# ----------------------------------
-# 1️⃣ Load original data
-# ----------------------------------
+# Load original dat
 X_train_scaled, X_test_scaled, _, _, y_train, y_test = load_data()
 
 print("Original training size:", X_train_scaled.shape)
 
-# ----------------------------------
-# 2️⃣ Expand dataset
-# ----------------------------------
+
+# Expand dataset
 X_large, y_large = generate_large_dataset(
     X_train_scaled,
     y_train,
@@ -28,16 +25,13 @@ X_large, y_large = generate_large_dataset(
 
 print("Expanded training size:", X_large.shape)
 
-# ----------------------------------
-# 3️⃣ PCA for visualization / consistency
-# ----------------------------------
+# PCA for visualization / consistency
 pca = PCA(n_components=2)
 X_large_pca = pca.fit_transform(X_large)
 X_test_pca = pca.transform(X_test_scaled)
 
-# ----------------------------------
-# 4️⃣ Models
-# ----------------------------------
+
+# Models
 models = {
     "Linear": LogisticRegression(),
     "Poly_deg2": Pipeline([
@@ -47,9 +41,7 @@ models = {
     "RBF": SVC(kernel="rbf", gamma="scale")
 }
 
-# ----------------------------------
-# 5️⃣ Train & Evaluate
-# ----------------------------------
+# Train & Evaluate
 print("\n===== Accuracy on Expanded Dataset =====")
 
 for name, model in models.items():
